@@ -1,28 +1,139 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Header :nav="navArry" navid="0"></Header>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from './components/common/Header.vue'
 
 export default {
-  name: 'app',
-  components: {
-    HelloWorld
-  }
+    name: 'app',
+    data(){
+        return{
+            navArry:[{
+                id:0,
+                text:'首页',
+                EnglishText:'HOMEPAGE',
+                linkUrl:'index.html',
+                second:[]
+            },{
+                id:1,
+                text:'走进陶瓷院',
+                EnglishText:'ABOUT',
+                linkUrl:'aboutUs.html',
+                second:[{
+                    text:'陶瓷院简介',
+                    link_url:'aboutUs.html?id=0'
+                },{
+                    text:'大事记',
+                    link_url:'aboutUs.html?id=1'
+                }]
+            },{
+                id:2,
+                text:'馆藏精品',
+                EnglishText:'COLLECTIONS',
+                linkUrl:'collection.html',
+                second:[{
+                    text:'馆藏精品',
+                    link_url:'collection.html'
+                }]
+            },{
+                id:3,
+                text:'九文轩书画院',
+                EnglishText:'CALLIGRAPHY',
+                linkUrl:'calligraphy.html',
+                second:[{
+                    text:'山水画',
+                    link_url:'calligraphy.html?id=1'
+                },{
+                    text:'花鸟画',
+                    link_url:'calligraphy.html?id=2'
+                },{
+                    text:'人物画',
+                    link_url:'calligraphy.html?id=3'
+                },{
+                    text:'动物画',
+                    link_url:'calligraphy.html?id=4'
+                },{
+                    text:'书法',
+                    link_url:'calligraphy.html?id=5'
+                },{
+                    text:'静物',
+                    link_url:'calligraphy.html?id=6'
+                }]
+            },{
+                id:4,
+                text:'文物鉴定',
+                EnglishText:'HISTORICAL',
+                linkUrl:'identify.html',
+                second:[]
+            },{
+                id:5,
+                text:'摄影家协会',
+                EnglishText:'ASSOCIATION',
+                linkUrl:'photographers.html',
+                second:[]
+            },{
+                id:6,
+                text:'专题活动',
+                EnglishText:'ACTIVITY',
+                linkUrl:'activity.html',
+                second:[]
+            },{
+                id:7,
+                text:'文创产品',
+                EnglishText:'SOUVENIR',
+                linkUrl:'http://www.bwgsd.com/shop/index.php',
+                second:[{
+                    text:'博物馆商店',
+                    link_url:'http://www.bwgsd.com/shop/index.php'
+                }]
+            },{
+                id:8,
+                text:'新闻公告',
+                EnglishText:'NEWS',
+                linkUrl:'news.html',
+                second:[{
+                    text:'新闻',
+                    link_url:'news.html?id=1'
+                },{
+                    text:'公告',
+                    link_url:'news.html?id=2'
+                },{
+                    text:'展讯',
+                    link_url:'news.html?id=3'
+                }]
+            },{
+                id:9,
+                text:'陶瓷院服务',
+                EnglishText:'SERVICE',
+                linkUrl:'service.html',
+                second:[{
+                    text:'场地租借',
+                    link_url:'service.html?name=cdzj'
+                },{
+                    text:'品牌建设',
+                    link_url:'service.html?name=ppjs'
+                },{
+                    text:'参观指南',
+                    link_url:'service.html?name=cgzn'
+                },{
+                    text:'国学培训',
+                    link_url:'service.html?name=gxpx'
+                },{
+                    text:'线下活动',
+                    link_url:'service.html?name=xxhd'
+                }]
+            }],
+
+        }
+      },
+    mounted(){
+
+    },
+    components: {
+      "Header":Header
+    }
 }
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
