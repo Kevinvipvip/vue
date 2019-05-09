@@ -1,19 +1,20 @@
 <template>
   <div class="header">
     <div class="header-box">
-      <div class="logo"><a href="index.html"><img :src="image" /></a></div>
+      <div class="logo"><a href="/"><img :src="image" /></a></div>
       <div class="nav-box">
         <ul class="nav">
           <li
             v-for="item in nav"
-            :class="item.id == showId||contShow?'on':''"
+            :class="item.id == navId?'on':''"
+            @click="changeNavId(item.id)"
             :style="'width:' + listWidth"
             @mouseover="overShow(item.id)"
             @mouseout="outHide"
           >
-            <a :href="item.linkUrl+'?id='+item.id">{{item.text}}<span>{{item.EnglishText}}</span></a>
+            <router-link :to="item.linkUrl">{{item.text}}<span>{{item.EnglishText}}</span></router-link>
             <ul>
-              <li v-for="i in item.second"><a :href="i.link_url">{{i.text}}</a></li>
+              <li v-for="i in item.second"><router-link :to="i.link_url">{{i.text}}</router-link></li>
             </ul>
           </li>
         </ul>
@@ -23,44 +24,46 @@
 </template>
 
 <script>
-    /* eslint-disable no-console */
+import imgUrl from '../../assets/tcylogo.png'
 
-    import imgUrl from '../../assets/tcylogo.png'
+var historyNavId;
 
 export default {
   name: 'Header',
   props: {
-      navid:String,
       nav:Array,
   },
   data(){
     return{
+        navId:0,
         image: imgUrl,
-        listWidth:'',
-        showId:this.navid,
-        contShow:false
+        listWidth:''
     }
   },
   mounted(){
     let length = this.nav.length;
     let width = 1100/length
     this.listWidth = width + '%';
-      this.getUrlPath()
   },
   methods:{
       overShow(num){
-          this.showId = num;
+          historyNavId=this.navId;
+          this.navId = num;
       },
       outHide(){
-          this.showId = this.navid;
+          this.navId = historyNavId;
       },
-      getUrlPath(){
-          let contId=this.$Request.id
-          if (contId === this.nav[contId].id){
-              this.contShow = true;
-          }
-          console.log(this.$Request.id)
-      }
+      changeNavId(id){
+          historyNavId=id;
+          this.navId = id;
+      },
+      // getUrlPath(){
+      //     let contId=this.$route.params.id
+      //     if (contId === this.nav[contId].id){
+      //         this.contShow = true;
+      //     }
+      //     console.log(contId)
+      // }
   }
 }
 </script>

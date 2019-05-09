@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-    <Header :nav="navArry" navid="0"></Header>
+    <Header :nav="navArry"></Header>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Header from './components/common/Header.vue'
-
+import Header from './components/common/Header'
 export default {
     name: 'app',
     data(){
@@ -15,70 +15,70 @@ export default {
                 id:0,
                 text:'首页',
                 EnglishText:'HOMEPAGE',
-                linkUrl:'index.html',
+                linkUrl:'/',
                 second:[]
             },{
                 id:1,
                 text:'走进陶瓷院',
                 EnglishText:'ABOUT',
-                linkUrl:'aboutUs.html',
+                linkUrl:'/aboutUs',
                 second:[{
                     text:'陶瓷院简介',
-                    link_url:'aboutUs.html?id=0'
+                    link_url:'/aboutUs/0'
                 },{
                     text:'大事记',
-                    link_url:'aboutUs.html?id=1'
+                    link_url:'/aboutUs/1'
                 }]
             },{
                 id:2,
                 text:'馆藏精品',
                 EnglishText:'COLLECTIONS',
-                linkUrl:'collection.html',
+                linkUrl:'/collection',
                 second:[{
                     text:'馆藏精品',
-                    link_url:'collection.html'
+                    link_url:'/collection'
                 }]
             },{
                 id:3,
                 text:'九文轩书画院',
                 EnglishText:'CALLIGRAPHY',
-                linkUrl:'calligraphy.html',
+                linkUrl:'/calligraphy',
                 second:[{
                     text:'山水画',
-                    link_url:'calligraphy.html?id=1'
+                    link_url:'/calligraphy/1'
                 },{
                     text:'花鸟画',
-                    link_url:'calligraphy.html?id=2'
+                    link_url:'/calligraphy/2'
                 },{
                     text:'人物画',
-                    link_url:'calligraphy.html?id=3'
+                    link_url:'/calligraphy/3'
                 },{
                     text:'动物画',
-                    link_url:'calligraphy.html?id=4'
+                    link_url:'/calligraphy/4'
                 },{
                     text:'书法',
-                    link_url:'calligraphy.html?id=5'
+                    link_url:'/calligraphy/5'
                 },{
                     text:'静物',
-                    link_url:'calligraphy.html?id=6'
+                    link_url:'/calligraphy/id=6'
                 }]
             },{
                 id:4,
                 text:'文物鉴定',
                 EnglishText:'HISTORICAL',
-                linkUrl:'identify.html',
+                linkUrl:'/identify',
                 second:[]
             },{
                 id:5,
                 text:'摄影家协会',
                 EnglishText:'ASSOCIATION',
-                linkUrl:'photographers.html',
+                linkUrl:'/photographers',
                 second:[]
             },{
                 id:6,
                 text:'专题活动',
                 EnglishText:'ACTIVITY',
-                linkUrl:'activity.html',
+                linkUrl:'/activity',
                 second:[]
             },{
                 id:7,
@@ -93,47 +93,50 @@ export default {
                 id:8,
                 text:'新闻公告',
                 EnglishText:'NEWS',
-                linkUrl:'news.html',
+                linkUrl:'/news',
                 second:[{
                     text:'新闻',
-                    link_url:'news.html?id=1'
+                    link_url:'/news/1'
                 },{
                     text:'公告',
-                    link_url:'news.html?id=2'
+                    link_url:'/news/2'
                 },{
                     text:'展讯',
-                    link_url:'news.html?id=3'
+                    link_url:'/news/3'
                 }]
             },{
                 id:9,
                 text:'陶瓷院服务',
                 EnglishText:'SERVICE',
-                linkUrl:'service.html',
+                linkUrl:'/service',
                 second:[{
                     text:'场地租借',
-                    link_url:'service.html?name=cdzj'
+                    link_url:'/service/cdzj'
                 },{
                     text:'品牌建设',
-                    link_url:'service.html?name=ppjs'
+                    link_url:'/service/ppjs'
                 },{
                     text:'参观指南',
-                    link_url:'service.html?name=cgzn'
+                    link_url:'/service/cgzn'
                 },{
                     text:'国学培训',
-                    link_url:'service.html?name=gxpx'
+                    link_url:'/service/gxpx'
                 },{
                     text:'线下活动',
-                    link_url:'service.html?name=xxhd'
+                    link_url:'/service/xxhd'
                 }]
-            }],
-
+            }]
         }
-      },
-    mounted(){
+    },
+    methods:{
 
     },
-    components: {
-      "Header":Header
+    components:{
+        "Header":Header
     }
 }
 </script>
+<!-- 添加“scoped”属性以仅将CSS限制到此组件 -->
+<style scoped>
+
+</style>
