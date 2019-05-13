@@ -1,7 +1,7 @@
 <template>
     <h2 class="title-text">
         {{text}}
-        <span v-if="showFlag">{{englishText}}</span>
+        <span v-if="show">{{english}}</span>
     </h2>
 </template>
 
@@ -27,5 +27,8 @@
         font-size: 18px;
         color: #8d5526;
         margin-bottom: 12px;
+    }
+    .title-text span{
+        display: block;
     }
 </style>

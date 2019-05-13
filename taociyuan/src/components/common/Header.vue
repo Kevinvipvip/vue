@@ -56,14 +56,7 @@ export default {
       changeNavId(id){
           historyNavId=id;
           this.navId = id;
-      },
-      // getUrlPath(){
-      //     let contId=this.$route.params.id
-      //     if (contId === this.nav[contId].id){
-      //         this.contShow = true;
-      //     }
-      //     console.log(contId)
-      // }
+      }
   }
 }
 </script>
