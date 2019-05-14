@@ -39,7 +39,7 @@
                 <MyButton link="javascript:void(0)" text="进入新闻中心" margin="30px auto"></MyButton>
             </div>
         </div>
-
+        <Footer :about="aboutUsArray" :help="helpArray"></Footer>
     </div>
 </template>
 
@@ -52,6 +52,7 @@
     import axios from 'axios'
     import MyTabBar from "../common/MyTabBar"
     import TabBarContent from './TabBarContent'
+    import Footer from "../common/Footer"
 
     export default {
         name: 'home',
@@ -80,7 +81,25 @@
                 ],
                 newsArr:[],
                 type:0,
-                isImage:true
+                isImage:true,
+
+                // footer
+                aboutUsArray:[
+                    {
+                        name:"了解我们",
+                        linkUrl:'/'
+                    },
+                    {
+                        name:"招聘公告",
+                        linkUrl:'/'
+                    }
+                ],
+                helpArray:[
+                    {
+                        name:'游览须知',
+                        linkUrl:'/'
+                    }
+                ]
             }
         },
         mounted:function(){
@@ -142,7 +161,8 @@
             MyButton,
             IndexImage,
             MyTabBar,
-            TabBarContent
+            TabBarContent,
+            Footer
         }
     }
 
