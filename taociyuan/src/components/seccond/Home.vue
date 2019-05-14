@@ -11,7 +11,7 @@
                         <TitleText english="" text="天津陶瓷院" :show="show"></TitleText>
                         <ShortEssay :text="textOne" type="0"></ShortEssay>
                     </div>
-                    <MyButton link="javascript:void(0)" text="进入详情"></MyButton>
+                    <MyButton link="javascript:void(0)" text="进入详情" margin="0"></MyButton>
                 </div>
                 <div class="brief-img-box">
                     <IndexImage src="http://tjtcy.cn/tcymuseum/images/dtll.jpg"></IndexImage>
@@ -23,7 +23,7 @@
                     <ShortEssay :text="textTwo" type="0"></ShortEssay>
                     <p>地址：<span>天津市西青区西苑别墅B区13号</span></p>
                 </div>
-                <MyButton link="javascript:void(0)" text="进入详情"></MyButton>
+                <MyButton link="javascript:void(0)" text="进入详情" margin="0"></MyButton>
             </div>
             <div class="tcy-cont tcy-change">
                 <TitleText english="SOUVENIR" text="文创产品" :show="!show"></TitleText>
@@ -34,7 +34,9 @@
         </div>
         <div class="news-box">
             <div class="news-cont">
-                <myTabBar :tab="newsArry" route-link="/collection"></myTabBar>
+                <myTabBar :tab="newsTitleArr" v-on:setTypeId="getNewsList($event)"></myTabBar>
+                <TabBarContent :content="newsArr" :image="isImage" :type="type"></TabBarContent>
+                <MyButton link="javascript:void(0)" text="进入新闻中心" margin="30px auto"></MyButton>
             </div>
         </div>
 
@@ -43,12 +45,13 @@
 
 <script>
     import { slider, slideritem } from 'vue-concise-slider'
-    import TitleText from './components/common/TitleText'
-    import ShortEssay from './components/common/ShortEssay'
-    import MyButton from './components/common/MyButton'
-    import IndexImage from './components/common/IndexImage'
+    import TitleText from '../common/TitleText'
+    import ShortEssay from '../common/ShortEssay'
+    import MyButton from '../common/MyButton'
+    import IndexImage from '../common/IndexImage'
     import axios from 'axios'
-    import MyTabBar from "./components/common/MyTabBar"
+    import MyTabBar from "../common/MyTabBar"
+    import TabBarContent from './TabBarContent'
 
     export default {
         name: 'home',
@@ -63,7 +66,7 @@
                 textOne:"陶瓷院博物馆成立于2018年7月5日坐落于天津市西青区西苑别墅B区13号，建筑面积1000多平米，截止目前为止已用将近3亿片老瓷片，耗时40万工时。地理位置毗邻西青区侯台水西公园，运河区，曹庄花市等，内部由假山、流水、喷泉及富有时代特点的磨盘、碾砣装饰装修，室内外使用宋元至民国时期各窑址老瓷片、瓷盘、瓷瓶装饰凉亭走廊，墙面、屋顶由老瓷片拼接成各种造型图案，如敦煌飞天、万里长城、嫦娥奔月、古代四大美女、道教八宝、福禄寿喜财、青龙、麒麟、马踏飞燕等百余张其中“天津记忆”尤为突出，另外馆内使用的家具、门窗、展台、座椅均为清代或者民国时期的老物件。",
                 textTwo:"开放时间：",
                 show:false,
-                newsArry:[
+                newsTitleArr:[
                     {
                         id:1,
                         name:"新闻"
@@ -74,26 +77,26 @@
                         id:3,
                         name:"展讯"
                     }
-                ]
+                ],
+                newsArr:[],
+                type:0,
+                isImage:true
             }
         },
         mounted:function(){
             this.getSwiper();
             this.getTCYBrief();
             this.getTcyVisitTips();
+            this.getNewsList(1);
         },
         methods:{
             getSwiper(){
                 axios.post("http://tjtcy.cn/index.php?m=Home&c=Index&a=index").then((res)=>{
                     let swiperArry = res.data.data.list;
-                    let style = {};
                     if (res.data.code == 1){
                         for (let i = 0; i < swiperArry.length; i++){
                             if (swiperArry[i].pic){
                                 swiperArry[i].pic = 'http://tjtcy.cn'+swiperArry[i].pic
-                                // swiperArry[i].style = style
-                                // swiperArry[i].html = ""
-                                // swiperArry[i].style.background = "url('http://tjtcy.cn/"+ swiperArry[i].pic+"')no-repeat center"
                             }
                         }
                         this.someList = swiperArry
@@ -119,6 +122,16 @@
                         alert(res.data.message)
                     }
                 })
+            },
+            getNewsList(type){
+                axios.post("http://tjtcy.cn/index.php?m=Home&c=Index&a=newsList","type="+type).then((res)=>{
+                    if (res.data.code == 1){
+                        this.newsArr = res.data.data.list
+                        this.type = type
+                    } else {
+                        alert(res.data.message)
+                    }
+                })
             }
         },
         components: {
@@ -128,7 +141,8 @@
             ShortEssay,
             MyButton,
             IndexImage,
-            MyTabBar
+            MyTabBar,
+            TabBarContent
         }
     }
 
@@ -188,7 +202,11 @@
         font-weight: normal;
     }
     .news-box{
-        background: url("./assets/news-bg.jpg")no-repeat center;
+        background: url("../../assets/news-bg.jpg")repeat-y center top;
         overflow: hidden;
+    }
+    .news-cont{
+        width: 1300px;
+        margin: 0 auto;
     }
 </style>

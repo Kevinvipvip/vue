@@ -1,6 +1,9 @@
 <template>
-    <div class="my-button">
-        <a :href="link">{{text}}</a>
+    <div class="my-button" :style="'margin:'+margin">
+        <a :href="link"
+           @mouseover="overShow"
+           @mouseout="outHide"
+           v-bind:class="changeClass == 1?'on':''">{{text}}</a>
     </div>
 </template>
 
@@ -9,15 +12,23 @@
         name: 'MyButton',
         props:{
             text:String,
-            link:String
+            link:String,
+            margin:String
         },
         data() {
             return {
-
+                historyNavId:0,
+                changeClass:0
             }
         },
         methods:{
-
+            overShow(){
+                this.historyNavId=this.changeClass;
+                this.changeClass = 1;
+            },
+            outHide(){
+                this.changeClass = this.historyNavId;
+            },
         }
     }
 </script>
@@ -36,5 +47,9 @@
         display: block;
         width: 100%;
         height: 100%;
+    }
+    .my-button .on{
+        background: #905223;
+        color: #fff;
     }
 </style>

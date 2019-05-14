@@ -7,7 +7,7 @@
                 @mouseover="overShow(v.id)"
                 @mouseout="outHide"
                 @click="changeNavId(v.id)"
-            ><route-link :to="routeLink">{{v.name}}</route-link></li>
+            >{{v.name}}</li>
         </ul>
     </div>
 </template>
@@ -16,8 +16,7 @@
     export default {
         name: "MyTabBar",
         props:{
-            tab:Array,
-            routeLink:String
+            tab:Array
         },
         data(){
             return {
@@ -36,6 +35,8 @@
             changeNavId(id){
                 this.historyNavId=id;
                 this.type = id;
+                this.$emit("setTypeId",id)
+
             }
         }
     }
@@ -60,6 +61,9 @@
         background: #e7d7bd;
         cursor: pointer;
         color: #984b15;
+    }
+    .my-tabBar-box ul li span{
+        display: block;
     }
     .my-tabBar-box ul .on{
         background: #905223;

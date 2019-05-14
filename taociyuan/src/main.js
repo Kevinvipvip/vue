@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './App.vue'
-import Home from './Home'
-import Collection from './Collection'
+import Home from './components/seccond/Home'
+import Collection from './components/seccond/Collection'
 
 // import {UrlSearch} from "./myData/data"; //导航栏Url截取
 
