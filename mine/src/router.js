@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
+import Mine from './views/Mine.vue'
 
 Vue.use(Router)
 
@@ -8,17 +8,17 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home
+      name: 'mime',
+      component: Mine
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+      path: '/resume',
+      name: 'resume',
+      // 路由级代码拆分
+      // 这将为此路由生成一个单独的块（about.[hash].js）。
+      // 当路线被访问时，它被延迟加载。
+      component: () => import('./views/Resume.vue')
     }
   ],
-  mode:'history'
+  mode: 'history'
 })

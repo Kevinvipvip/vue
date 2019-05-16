@@ -15,7 +15,7 @@
             <span>爱好玩游戏、打乒乓球和编程</span>
             <div class="link-box">
               <router-link to="/">mine</router-link>
-              <router-link to="/about">resume</router-link>
+              <router-link to="/resume">resume</router-link>
             </div>
           </div>
         </div>
@@ -26,11 +26,6 @@
         </div>
       </div>
     </div>
-    <!--<div id="nav">-->
-    <!--<router-link to="/">mine</router-link>-->
-    <!--|-->
-    <!--<router-link to="/about">resume</router-link>-->
-    <!--</div>-->
     <router-view/>
   </div>
 </template>
